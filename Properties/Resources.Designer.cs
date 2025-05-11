@@ -133,6 +133,26 @@ namespace Library_system.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Checck_out {
+            get {
+                object obj = ResourceManager.GetObject("Checck_out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Check_in {
+            get {
+                object obj = ResourceManager.GetObject("Check_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dashboard_icon_black {
             get {
                 object obj = ResourceManager.GetObject("dashboard icon black", resourceCulture);
@@ -156,6 +176,16 @@ namespace Library_system.Properties {
         internal static System.Drawing.Bitmap Library_icon {
             get {
                 object obj = ResourceManager.GetObject("Library icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Log_Out {
+            get {
+                object obj = ResourceManager.GetObject("Log_Out", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

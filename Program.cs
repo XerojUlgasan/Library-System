@@ -1,3 +1,6 @@
+using Microsoft.Win32;
+using ScottPlot.Interactivity;
+
 namespace Library_system
 {
     internal static class Program
@@ -11,7 +14,7 @@ namespace Library_system
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new WelcomePage());
         }
     }
 }

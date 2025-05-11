@@ -21,6 +21,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using Library_system;
 
 
 //TODO:
@@ -49,12 +50,11 @@ namespace Library_system
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            branch.Text = admin.branch;
             dashboard_panel.Visible = true;
             user_panel.Visible = false;
             book_panel.Visible = false;
             borrow_record_panel.Visible = false;
-
-            addbook_publicationDate_dtp.MaxDate = DateTime.Now;
 
             dashboard_from_dtp.MaxDate = DateTime.Now.AddDays(-1);
             dashboard_from_dtp.Value = DateTime.Now.AddDays(-7);
@@ -173,107 +173,129 @@ namespace Library_system
             addborrow_returnDate_dtp.Value = DateTime.Now.AddDays(7);
         }
 
+        // Modify addborrow method to include branch information
         private void addborrow(object sender, EventArgs e) //INPUT BORROW DATA TO THE DATABASE
         {
-            if (string.IsNullOrWhiteSpace(addborrow_studId_txtbox.Text) ||
-                string.IsNullOrWhiteSpace(addborrow_title_txtbox.Text) ||
-                string.IsNullOrWhiteSpace(addborrow_returnDate_dtp.Text))
+            if (string.IsNullOrWhiteSpace(addborrow_user_type_txt.Text) ||
+                string.IsNullOrWhiteSpace(addborrow_email_txt.Text) ||
+                string.IsNullOrWhiteSpace(addborrow_title_txtbox.Text))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            string student_id = addborrow_studId_txtbox.Text;
-            string book_title = addborrow_title_txtbox.Text;
-            DateTime return_date = addborrow_returnDate_dtp.Value;
-
-            if (!IsValidStudentNumber(student_id))
+            if (addborrow_user_type_txt.Text == "Student" &&
+                string.IsNullOrWhiteSpace(addborrow_studId_txtbox.Text))
             {
-                MessageBox.Show("Invalid student number format.");
+                MessageBox.Show("Student ID is required.");
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Do you confirm the data that you have entered?", "Confirm Book Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            string borrowerId = (addborrow_user_type_txt.Text == "Student") ? addborrow_studId_txtbox.Text :addborrow_user_type_txt.Text;
+            string email = addborrow_email_txt.Text;
+            string bookTitle = addborrow_title_txtbox.Text;
+            DateTime returnDate = addborrow_returnDate_dtp.Value;
+            string currentBranch = admin.branch;
 
-            if (result == DialogResult.Yes)
+            try
             {
-                try
+                string connectionString = DatabaseConnectionStr.connStr;
+                using (OracleConnection conn = new OracleConnection(connectionString))
                 {
-                    string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
-                    using (OracleConnection conn = new OracleConnection(connectionString))
+                    conn.Open();
+
+                    // Validate user
+                    string validateUserQuery = @"
+                SELECT STUDENT_ID, FIRST_NAME, LAST_NAME
+                FROM USERS
+                WHERE EMAIL = :email AND BRANCH = :branch";
+
+                    string borrowerFirstName = null;
+                    string borrowerLastName = null;
+
+                    using (OracleCommand validateUserCmd = new OracleCommand(validateUserQuery, conn))
                     {
-                        conn.Open();
+                        validateUserCmd.Parameters.Add(new OracleParameter("email", email));
+                        validateUserCmd.Parameters.Add(new OracleParameter("branch", currentBranch));
 
-                        // Check if the student ID exists
-                        string checkStudentQuery = "SELECT COUNT(*) FROM users WHERE student_id = :student_id";
-                        using (OracleCommand checkStudentCmd = new OracleCommand(checkStudentQuery, conn))
+                        using (OracleDataReader reader = validateUserCmd.ExecuteReader())
                         {
-                            checkStudentCmd.Parameters.Add(new OracleParameter("student_id", student_id));
-                            int studentCount = Convert.ToInt32(checkStudentCmd.ExecuteScalar());
-                            if (studentCount == 0)
+                            if (reader.Read())
                             {
-                                MessageBox.Show("Student ID does not exist.");
+                                borrowerId = reader["STUDENT_ID"].ToString();
+                                borrowerFirstName = reader["FIRST_NAME"].ToString();
+                                borrowerLastName = reader["LAST_NAME"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("User not found in this branch.");
                                 return;
                             }
                         }
-
-                        // Check if the book title exists
-                        string checkBookQuery = "SELECT COUNT(*) FROM books WHERE book_id = :book_id";
-                        using (OracleCommand checkBookCmd = new OracleCommand(checkBookQuery, conn))
-                        {
-                            checkBookCmd.Parameters.Add(new OracleParameter("book_id", book_title));
-                            int bookCount = Convert.ToInt32(checkBookCmd.ExecuteScalar());
-                            if (bookCount == 0)
-                            {
-                                MessageBox.Show("Book title does not exist.");
-                                return;
-                            }
-                        }
-
-                        // Insert the borrow record
-                        string query = @"
-                            INSERT INTO borrowed_books (borrower_id, borrower_ln, borrower_fn, book_id, borrow_due, borrow_date, status)
-                            SELECT 
-                                u.student_id, 
-                                u.last_name, 
-                                u.first_name, 
-                                b.book_id, 
-                                :return_date, 
-                                SYSDATE, 
-                                'Borrowed'
-                            FROM 
-                                users u
-                            JOIN 
-                                books b ON b.book_id = :book_id
-                            WHERE 
-                                u.student_id = :student_id";
-
-                        using (OracleCommand cmd = new OracleCommand(query, conn))
-                        {
-                            cmd.Parameters.Add(new OracleParameter("return_date", return_date));
-                            cmd.Parameters.Add(new OracleParameter("book_id", book_title));
-                            cmd.Parameters.Add(new OracleParameter("student_id", student_id));
-
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Book data inserted successfully.");
-                        }
-
-                        enableall(addborrow_panel); // Enable all panels after insertion
-
-                        loadBorrow(); // Reload borrowed books after insertion
-
-                        addborrow_studId_txtbox.Text = "";
-                        addborrow_title_txtbox.Text = "";
-                        addborrow_returnDate_dtp.Value = DateTime.Now.AddDays(7);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
+
+                    // Validate book
+                    string validateBookQuery = @"
+                SELECT BOOK_ID
+                FROM BOOKS
+                WHERE TITLE = :title AND BRANCH = :branch";
+
+                    int bookId;
+
+                    using (OracleCommand validateBookCmd = new OracleCommand(validateBookQuery, conn))
+                    {
+                        validateBookCmd.Parameters.Add(new OracleParameter("title", bookTitle));
+                        validateBookCmd.Parameters.Add(new OracleParameter("branch", currentBranch));
+
+                        object result = validateBookCmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            bookId = Convert.ToInt32(result);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Book not found in this branch.");
+                            return;
+                        }
+                    }
+
+                    // Insert borrow record
+                    string insertBorrowQuery = @"
+                INSERT INTO BORROWED_BOOKS (
+                    BORROWER_ID, BORROWER_LN, BORROWER_FN, EMAIL, BOOK_ID, BORROW_DUE, BORROW_DATE, STATUS, BRANCH
+                ) VALUES (
+                    :borrowerId, :borrowerLastName, :borrowerFirstName, :email, :bookId, :borrowDue, SYSDATE, 'Borrowed', :branch
+                )";
+
+                    using (OracleCommand insertBorrowCmd = new OracleCommand(insertBorrowQuery, conn))
+                    {
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("borrowerId", borrowerId));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("borrowerLastName", borrowerLastName));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("borrowerFirstName", borrowerFirstName));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("email", email));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("bookId", bookId));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("borrowDue", returnDate));
+                        insertBorrowCmd.Parameters.Add(new OracleParameter("branch", currentBranch));
+
+                        insertBorrowCmd.ExecuteNonQuery();
+                        MessageBox.Show("Borrow record added successfully.");
+                    }
+
+                    // Reload borrow records
+                    loadBorrow();
+
+                    // Reset form fields
+                    addborrow_studId_txtbox.Text = "";
+                    addborrow_email_txt.Text = "";
+                    addborrow_title_txtbox.Text = "";
+                    addborrow_returnDate_dtp.Value = DateTime.Now.AddDays(7);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding borrow record: " + ex.Message);
+            }
         }
-
         private void status_filter(object sender, ToolStripItemClickedEventArgs e)
         {
             // FILTER STATUS FROM borrow_dgv TABLE
@@ -322,22 +344,9 @@ namespace Library_system
             addbook_quantity_num.Value = 1;
         }
 
+        // Modify addbook method to include branch information
         private void addbook(object sender, EventArgs e) //INPUTS BOOK DATA TO THE DATABASE
         {
-            //DATABASE BOOK TABLE REFERENCE :
-
-            //CREATE TABLE books(
-            //    title VARCHAR(255) NOT NULL,
-            //    author VARCHAR(255) NOT NULL,
-            //    publisher VARCHAR(255) NOT NULL,
-            //    publication_date DATE NOT NULL,
-            //    genre VARCHAR(100) NOT NULL,
-            //    book_language VARCHAR(50) NOT NULL,
-            //    page_count INT,
-            //    quantity INT NOT NULL,
-            //    Last_updated TIMESTAMP
-            //);
-
             if (string.IsNullOrWhiteSpace(addbook_title_txtbox.Text) ||
                 string.IsNullOrWhiteSpace(addbook_author_txtbox.Text) ||
                 string.IsNullOrWhiteSpace(addbook_publisher_txtbox.Text) ||
@@ -357,6 +366,7 @@ namespace Library_system
             string book_language = addbook_language_txtbox.Text;
             int page_count = (int)addbook_pagecount_num.Value;
             int quantity = (int)addbook_quantity_num.Value;
+            string currentBranch = admin.branch; // Get the current branch of the admin
 
             DialogResult result = MessageBox.Show("Do you confirm the data that you have entered?", "Confirm Book Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -365,12 +375,12 @@ namespace Library_system
                 // Insert data into the database
                 try
                 {
-                    string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+                    string connectionString = DatabaseConnectionStr.connStr;
                     using (OracleConnection conn = new OracleConnection(connectionString))
                     {
-                        string query = "INSERT INTO books (title, author, publisher, publication_date, genre, book_language, page_count, quantity) " +
-                                        "VALUES(:title, :author, :publisher, :publication_date, :genre, :book_language, :page_count, :quantity)";
-
+                        // Updated query to include branch parameter
+                        string query = "INSERT INTO books (title, author, publisher, publication_date, genre, book_language, page_count, quantity, branch) " +
+                                        "VALUES(:title, :author, :publisher, :publication_date, :genre, :book_language, :page_count, :quantity, :branch)";
 
                         using (OracleCommand cmd = new OracleCommand(query, conn))
                         {
@@ -382,6 +392,7 @@ namespace Library_system
                             cmd.Parameters.Add(new OracleParameter("book_language", book_language));
                             cmd.Parameters.Add(new OracleParameter("page_count", page_count));
                             cmd.Parameters.Add(new OracleParameter("quantity", quantity));
+                            cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
 
                             conn.Open();
                             cmd.ExecuteNonQuery();
@@ -406,7 +417,6 @@ namespace Library_system
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-
             }
             else
             {
@@ -474,10 +484,11 @@ namespace Library_system
             }
         }
 
-        //LOAD FUNCTIONS
+        // Modify loadDashboard method
         public void loadDashboard()
         {
-            string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+            string connectionString = DatabaseConnectionStr.connStr;
+            string currentBranch = admin.branch; // Get the current branch of the admin
 
             //COUNTERS
             //COUNTERS
@@ -489,35 +500,43 @@ namespace Library_system
                                    (SELECT COUNT(*) 
                                     FROM borrowed_books 
                                     WHERE BORROW_DATE BETWEEN :from_date AND :to_date 
-                                      AND status = 'Borrowed') AS borrowed_books,
+                                      AND status = 'Borrowed'
+                                      AND BRANCH = :branch) AS borrowed_books,
 
                                    (SELECT COUNT(*) 
                                     FROM borrowed_books 
                                     WHERE BORROW_DATE BETWEEN :from_date AND :to_date 
-                                      AND status = 'Returned') AS returned_books,
+                                      AND status = 'Returned'
+                                      AND BRANCH = :branch) AS returned_books,
 
                                    (SELECT COUNT(*) 
                                     FROM borrowed_books 
                                     WHERE BORROW_DATE BETWEEN :from_date AND :to_date 
                                       AND SYSDATE > BORROW_DUE
-                                      AND status != 'Returned') AS overdue_books,
+                                      AND status != 'Returned'
+                                      AND BRANCH = :branch) AS overdue_books,
 
                                    (SELECT COUNT(*) 
                                     FROM borrowed_books 
                                     WHERE BORROW_DATE BETWEEN :from_date AND :to_date 
-                                      AND status = 'Missing') AS missing_books,
+                                      AND status = 'Missing'
+                                      AND BRANCH = :branch) AS missing_books,
 
-                                   (SELECT SUM(QUANTITY) FROM books) AS total_books,
+                                   (SELECT SUM(QUANTITY) FROM books WHERE BRANCH = :branch) AS total_books,
+
+                                    (SELECT COUNT(*) FROM books WHERE BRANCH = :branch) AS total_unique_books,
 
                                    (SELECT COUNT(*)
                                     FROM users
-                                    WHERE DATE_CREATED BETWEEN :from_date AND :to_date) AS new_members
+                                    WHERE DATE_CREATED BETWEEN :from_date AND :to_date
+                                    AND BRANCH = :branch) AS new_members
                                FROM dual";
 
                 using (OracleCommand cmd = new OracleCommand(query, conn))
                 {
                     cmd.Parameters.Add(new OracleParameter("from_date", dashboard_from_dtp.Value));
                     cmd.Parameters.Add(new OracleParameter("to_date", dashboard_to_dtp.Value));
+                    cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
                     conn.Open();
                     using (OracleDataReader reader = cmd.ExecuteReader())
                     {
@@ -528,6 +547,7 @@ namespace Library_system
                             overdue_label.Text = reader["overdue_books"].ToString();
                             missing_label.Text = reader["missing_books"].ToString();
                             total_label.Text = reader["total_books"].ToString();
+                            unique_books_label.Text = reader["total_unique_books"].ToString();
                             member_label.Text = reader["new_members"].ToString();
                         }
                     }
@@ -553,16 +573,18 @@ namespace Library_system
                                 FROM borrowed_books bb
                                 JOIN books b
                                     ON b.book_id = bb.book_id
-                                WHERE SYSDATE > borrow_due AND
-                                    STATUS != 'Returned'";
+                                WHERE SYSDATE > borrow_due 
+                                    AND STATUS != 'Returned'
+                                    AND bb.BRANCH = :branch";
                 using (OracleCommand cmd = new OracleCommand(query, conn))
                 {
+                    cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
                     conn.Open();
                     using (OracleDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            overview_history_dgv.Rows.Add(  reader["borrower_id"].ToString(),
+                            overview_history_dgv.Rows.Add(reader["borrower_id"].ToString(),
                                                             reader["title"].ToString(),
                                                             Convert.ToDateTime(reader["borrow_due"]).ToString("MMMM d, yyyy"),
                                                             Convert.ToDateTime(reader["borrow_date"]).ToString("MMMM d, yyyy"));
@@ -573,8 +595,86 @@ namespace Library_system
             //OVERDUE HISTORY
             //OVERDUE HISTORY
             //OVERDUE HISTORY
+
+            loadVisitLogs();
         }
 
+        public void loadVisitLogs()
+        {
+            visit_logs_dgv.Rows.Clear(); // Clear existing rows in the DataGridView
+
+            try
+            {
+                string connectionString = DatabaseConnectionStr.connStr;
+                string currentBranch = admin.branch; // Get the current branch of the admin
+
+                using (OracleConnection conn = new OracleConnection(connectionString))
+                {
+                    // Query to get logs data filtered by branch
+                    string query = @"
+                        SELECT l.STUDENT_ID, u.FIRST_NAME, u.LAST_NAME, l.TYPE, l.TIME_LOGGED, l.BRANCH
+                        FROM LOGS l
+                        LEFT JOIN users u ON l.STUDENT_ID = u.STUDENT_ID
+                        WHERE l.BRANCH = :branch 
+                        AND TIME_LOGGED BETWEEN :from_date AND :to_date
+                        ORDER BY l.TIME_LOGGED DESC";
+
+                    using (OracleCommand cmd = new OracleCommand(query, conn))
+                    {
+                        cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
+                        cmd.Parameters.Add(new OracleParameter("from_date", dashboard_from_dtp.Value));
+                        cmd.Parameters.Add(new OracleParameter("to_date", dashboard_to_dtp.Value.AddDays(1)));
+
+                        conn.Open();
+                        using (OracleDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string studentId = reader["STUDENT_ID"].ToString();
+                                string firstName = reader.IsDBNull(reader.GetOrdinal("FIRST_NAME")) ? "Guest" : reader["FIRST_NAME"].ToString();
+                                string lastName = reader.IsDBNull(reader.GetOrdinal("LAST_NAME")) ? "" : reader["LAST_NAME"].ToString();
+                                string type = reader["TYPE"].ToString();
+                                DateTime timeLogged = Convert.ToDateTime(reader["TIME_LOGGED"]);
+
+                                // Add row to the DataGridView
+                                visit_logs_dgv.Rows.Add(
+                                    studentId,
+                                    firstName,
+                                    lastName,
+                                    type,
+                                    timeLogged.ToString("MMM dd, yyyy hh:mm tt")
+                                );
+                            }
+                        }
+                    }
+
+                    // Update visitor count
+                    using (OracleCommand countCmd = new OracleCommand(@"
+                SELECT COUNT(DISTINCT STUDENT_ID) AS visitor_count 
+                FROM LOGS 
+                WHERE BRANCH = :branch 
+                AND TIME_LOGGED BETWEEN :from_date AND :to_date
+                AND TYPE = 'Check In'", conn))
+                    {
+                        countCmd.Parameters.Add(new OracleParameter("branch", currentBranch));
+                        countCmd.Parameters.Add(new OracleParameter("from_date", dashboard_from_dtp.Value));
+                        countCmd.Parameters.Add(new OracleParameter("to_date", dashboard_to_dtp.Value.AddDays(1)));
+
+                        if (conn.State != ConnectionState.Open)
+                            conn.Open();
+
+                        var visitorCount = countCmd.ExecuteScalar();
+                        visitor_label.Text = visitorCount != DBNull.Value ? visitorCount.ToString() : "0";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading visit logs: " + ex.Message);
+            }
+        }
+
+        // Modify loadUsers method
         public void loadUsers() //LOAD USER
         {
             //REFERENCE TABLE:
@@ -588,12 +688,15 @@ namespace Library_system
             users_dgv.Rows.Clear(); // Clear existing rows in the DataGridView
             try
             {
-                string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+                string connectionString = DatabaseConnectionStr.connStr;
+                string currentBranch = admin.branch; // Get the current branch of the admin
+
                 using (OracleConnection conn = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, EMAIL FROM users";
+                    string query = "SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, EMAIL FROM users WHERE BRANCH = :branch";
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
+                        cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
                         conn.Open();
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
@@ -615,6 +718,7 @@ namespace Library_system
             }
         }
 
+        // Modify loadBooks method
         public void loadBooks() //LOAD BOOKS
         {
             //REFERENCE TABLE:
@@ -628,12 +732,15 @@ namespace Library_system
             //  "PAGE_COUNT" NUMBER(*, 0),
             //  "QUANTITY" NUMBER(*, 0),
             //  "LAST_UPDATED" TIMESTAMP(6),
-            //  "BOOK_ID" NUMBER
+            //  "BOOK_ID" NUMBER,
+            //  "BRANCH" VARCHAR2(20 BYTE)
             // )
             books_dgv.Rows.Clear(); // Clear existing rows in the DataGridView
             try
             {
-                string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+                string connectionString = DatabaseConnectionStr.connStr;
+                string currentBranch = admin.branch; // Get the current branch of the admin
+
                 using (OracleConnection conn = new OracleConnection(connectionString))
                 {
                     string query = @"
@@ -646,11 +753,14 @@ namespace Library_system
                                             quantity,
                                             (quantity - (SELECT COUNT(*) 
                                                          FROM borrowed_books bb
-                                                         WHERE b.book_id = bb.book_id)) AS available
-                                        FROM books b";
+                                                         WHERE b.book_id = bb.book_id
+                                                         AND bb.BRANCH = :branch)) AS available
+                                        FROM books b
+                                        WHERE b.BRANCH = :branch";
 
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
+                        cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
                         conn.Open();
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
@@ -676,40 +786,49 @@ namespace Library_system
             }
         }
 
+        // Modify loadBorrow method
         public void loadBorrow() //LOAD BORROWED BOOKS
         {
-            //REFERENCE TABLE:
-            //CREATE TABLE borrowed_books
-            // ("BORROW_ID" NUMBER,
-            //  "BORROWER_ID" VARCHAR2(10),
-            //  "BORROWER_LN" VARCHAR2(25),
-            //  "BORROWER_FN" VARCHAR2(25),
-            //  "BOOK_TITLE" VARCHAR2(255),
-            //  "BORROW_DUE" DATE,
-            //  "BORROW_DATE" DATE,
-            //  "STATUS" VARCHAR2(20)
-            // )
             borrow_dgv.Rows.Clear(); // Clear existing rows in the DataGridView
+
             try
             {
-                string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+                string connectionString = DatabaseConnectionStr.connStr;
+                string currentBranch = admin.branch; // Get the current branch of the admin
+
                 using (OracleConnection conn = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT BORROW_ID, BORROWER_ID, BORROWER_LN, BORROWER_FN, BOOK_ID, BORROW_DUE, BORROW_DATE, STATUS FROM borrowed_books";
+                    string query = @"
+                SELECT 
+                    bb.BORROW_ID,
+                    u.TYPE AS BORROWER_TYPE,
+                    u.EMAIL,
+                    b.TITLE AS BOOK_TITLE,
+                    bb.BORROW_DATE,
+                    bb.BORROW_DUE,
+                    bb.STATUS
+                FROM BORROWED_BOOKS bb
+                JOIN USERS u ON bb.BORROWER_ID = u.STUDENT_ID
+                JOIN BOOKS b ON bb.BOOK_ID = b.BOOK_ID
+                WHERE bb.BRANCH = :branch
+                ORDER BY bb.BORROW_DATE DESC";
+
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
+                        cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
                         conn.Open();
+
                         using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 borrow_dgv.Rows.Add(
                                     reader["BORROW_ID"].ToString(),
-                                    reader["BORROWER_ID"].ToString(),
-                                    reader["BORROWER_LN"].ToString() + ", " + reader["BORROWER_FN"].ToString(),
-                                    Convert.ToInt32(reader["BOOK_ID"]),
-                                    Convert.ToDateTime(reader["BORROW_DATE"]).ToString("MMMMM d, yyyy"),
-                                    Convert.ToDateTime(reader["BORROW_DUE"]).ToString("MMMMM d, yyyy"),
+                                    reader["BORROWER_TYPE"].ToString(),
+                                    reader["EMAIL"].ToString(),
+                                    reader["BOOK_TITLE"].ToString(),
+                                    Convert.ToDateTime(reader["BORROW_DATE"]).ToString("MMMM d, yyyy"),
+                                    Convert.ToDateTime(reader["BORROW_DUE"]).ToString("MMMM d, yyyy"),
                                     reader["STATUS"].ToString()
                                 );
                             }
@@ -719,11 +838,9 @@ namespace Library_system
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error loading borrowed books: " + ex.Message);
             }
-
         }
-
         //VALIDATION FUNCTIONS TO BE RECYCLED IN ACCOUNT REGISTRATION
         private bool IsValidEmail(string email)
         {
@@ -783,7 +900,7 @@ namespace Library_system
             InitializeChart();
         }
 
-        //CHART INITIALIZATION
+        // Modify InitializeChart method to filter by branch
         private void InitializeChart()
         {
             // Clear any existing chart
@@ -815,6 +932,7 @@ namespace Library_system
             string chartTitle = "Library Statistics";
             string yAxisName = "Count";
             string seriesName = selectedStatistic;
+            string currentBranch = admin.branch; // Get the current branch of the admin
 
             List<double> values = new List<double>();
             List<string> dates = new List<string>();
@@ -822,7 +940,7 @@ namespace Library_system
             DateTime toDate = dashboard_to_dtp.Value;
 
             // Set up the database connection
-            string connectionString = "User Id=xeroj; Password=Xeroj456519; Data Source=localhost:1521/XE;";
+            string connectionString = DatabaseConnectionStr.connStr;
             using (OracleConnection conn = new OracleConnection(connectionString))
             {
                 try
@@ -833,12 +951,17 @@ namespace Library_system
                     switch (selectedStatistic)
                     {
                         case "Visitors":
+                            // Create visitor query with branch filtering based on LOGS table
+                            query = @"
+                                    SELECT COUNT(*) AS count, TRUNC(DATE_LOGGED) AS created_date
+                                    FROM LOGS
+                                    WHERE DATE_LOGGED BETWEEN :from_date AND :to_date
+                                    AND TYPE = 'Check In'
+                                    AND BRANCH = :branch
+                                    GROUP BY TRUNC(DATE_LOGGED)
+                                    ORDER BY TRUNC(DATE_LOGGED)";
                             chartTitle = "Visitor Statistics";
-                            values = Enumerable.Repeat(0.0, 10).ToList();
-                            dates = Enumerable.Range(0, 10)
-                                .Select(i => fromDate.AddDays(i).ToString("MMM dd"))
-                                .ToList();
-                            seriesName = "No Visitor Data";
+                            seriesName = "Visitors";
                             break;
 
                         case "New Members":
@@ -846,6 +969,7 @@ namespace Library_system
                                     SELECT COUNT(*) AS count, TRUNC(date_created) AS created_date
                                     FROM users
                                     WHERE date_created BETWEEN :from_date AND :to_date
+                                    AND BRANCH = :branch
                                     GROUP BY TRUNC(date_created)
                                     ORDER BY TRUNC(date_created)";
                             chartTitle = "New Member Registrations";
@@ -856,8 +980,9 @@ namespace Library_system
                             query = @"
                                     SELECT COUNT(*) AS count, TRUNC(borrow_date) AS created_date
                                     FROM borrowed_books
-                                    WHERE status = 'Borrowed' AND 
-                                        borrow_date BETWEEN :from_date AND :to_date
+                                    WHERE status = 'Borrowed' 
+                                        AND borrow_date BETWEEN :from_date AND :to_date
+                                        AND BRANCH = :branch
                                     GROUP BY TRUNC(borrow_date)
                                     ORDER BY TRUNC(borrow_date)";
                             chartTitle = "Books Borrowed Over Time";
@@ -868,8 +993,9 @@ namespace Library_system
                             query = @"
                                     SELECT COUNT(*) AS count, TRUNC(borrow_date) AS created_date
                                     FROM borrowed_books
-                                    WHERE status = 'Returned' AND 
-                                        borrow_date BETWEEN :from_date AND :to_date
+                                    WHERE status = 'Returned' 
+                                        AND borrow_date BETWEEN :from_date AND :to_date
+                                        AND BRANCH = :branch
                                     GROUP BY TRUNC(borrow_date)
                                     ORDER BY TRUNC(borrow_date)";
                             chartTitle = "Books Returned Over Time";
@@ -883,6 +1009,7 @@ namespace Library_system
                                     WHERE SYSDATE > borrow_due 
                                         AND status != 'Returned'
                                         AND borrow_due BETWEEN :from_date AND :to_date
+                                        AND BRANCH = :branch
                                     GROUP BY TRUNC(borrow_due)
                                     ORDER BY TRUNC(borrow_due)";
                             chartTitle = "Overdue Books Over Time";
@@ -893,8 +1020,9 @@ namespace Library_system
                             query = @"
                                     SELECT COUNT(*) AS count, TRUNC(borrow_date) AS created_date
                                     FROM borrowed_books
-                                    WHERE status = 'Missing' AND
-                                        borrow_date BETWEEN :from_date AND :to_date
+                                    WHERE status = 'Missing'
+                                        AND borrow_date BETWEEN :from_date AND :to_date
+                                        AND BRANCH = :branch
                                     GROUP BY TRUNC(borrow_date)
                                     ORDER BY TRUNC(borrow_date)";
                             chartTitle = "Missing Books Over Time";
@@ -906,6 +1034,7 @@ namespace Library_system
                                     SELECT SUM(QUANTITY) AS count, TRUNC(LAST_UPDATED) AS created_date
                                     FROM books
                                     WHERE LAST_UPDATED BETWEEN :from_date AND :to_date
+                                    AND BRANCH = :branch
                                     GROUP BY TRUNC(LAST_UPDATED)
                                     ORDER BY TRUNC(LAST_UPDATED)";
                             chartTitle = "Total Book Inventory Over Time";
@@ -935,6 +1064,7 @@ namespace Library_system
                         {
                             cmd.Parameters.Add(new OracleParameter("from_date", fromDate));
                             cmd.Parameters.Add(new OracleParameter("to_date", toDate));
+                            cmd.Parameters.Add(new OracleParameter("branch", currentBranch));
 
                             using (OracleDataReader reader = cmd.ExecuteReader())
                             {
@@ -1005,7 +1135,7 @@ namespace Library_system
 
             cartesianChart.Title = new LabelVisual
             {
-                Text = chartTitle,
+                Text = chartTitle + " - " + currentBranch + " Branch",
                 TextSize = 16,
                 Paint = new SolidColorPaint(SKColors.DarkSlateBlue)
             };
@@ -1015,6 +1145,25 @@ namespace Library_system
             cartesianChart.LegendTextSize = 6;
 
             chart_panel.Controls.Add(cartesianChart);
+        }
+
+        private void log_out(object sender, EventArgs e)
+        {
+            this.Hide();
+            WelcomePage wc = new WelcomePage();
+            wc.Show();
+        }
+
+        private void user_type(object sender, EventArgs e)
+        {
+            user_type_cms.Show(addborrow_user_type_txt, new Point(0, addborrow_user_type_txt.Height));
+        }
+
+        private void user_type_click(object sender, ToolStripItemClickedEventArgs e)
+        {
+            addborrow_user_type_txt.Text = e.ClickedItem.Text;
+
+            student_id_pnl.Visible = addborrow_user_type_txt.Text == "Student";
         }
     }
 }

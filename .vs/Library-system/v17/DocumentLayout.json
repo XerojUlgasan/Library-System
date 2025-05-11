@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\Gigabyte\\source\\Library-System\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\userinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:userinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|C:\\Users\\Gigabyte\\source\\Library-System\\userinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:userinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|C:\\Users\\Gigabyte\\source\\Library-System\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\welcomepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:welcomepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|C:\\Users\\Gigabyte\\source\\Library-System\\welcomepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:welcomepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\databaseconnectionstr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:databaseconnectionstr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|c:\\users\\gigabyte\\source\\library-system\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F07FC97-D70F-49AC-AC4C-491234F79757}|Library-system.csproj|solutionrelative:admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,29 +69,170 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T05:41:05.149Z",
+              "WhenOpened": "2025-05-11T01:12:52.833Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T05:41:12.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T11:50:35.001Z",
+              "WhenOpened": "2025-05-11T01:13:41.538Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "userInterface.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\userInterface.cs",
+              "RelativeDocumentMoniker": "userInterface.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\userInterface.cs",
+              "RelativeToolTip": "userInterface.cs",
+              "ViewState": "AgIAANYBAAAAAAAAAAAAAO4BAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-09T13:00:19.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "userInterface.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\userInterface.cs",
+              "RelativeDocumentMoniker": "userInterface.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\userInterface.cs [Design]",
+              "RelativeToolTip": "userInterface.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-09T12:45:14.873Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WelcomePage.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\WelcomePage.cs",
+              "RelativeDocumentMoniker": "WelcomePage.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\WelcomePage.cs [Design]",
+              "RelativeToolTip": "WelcomePage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T08:49:35.428Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WelcomePage.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\WelcomePage.cs",
+              "RelativeDocumentMoniker": "WelcomePage.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\WelcomePage.cs",
+              "RelativeToolTip": "WelcomePage.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAUwHsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T01:12:06.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\Student.cs",
+              "RelativeDocumentMoniker": "Student.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\Student.cs",
+              "RelativeToolTip": "Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T06:28:52.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DatabaseConnectionStr.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\DatabaseConnectionStr.cs",
+              "RelativeDocumentMoniker": "DatabaseConnectionStr.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\DatabaseConnectionStr.cs",
+              "RelativeToolTip": "DatabaseConnectionStr.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T05:19:54.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "admin.cs",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\source\\Library-System\\admin.cs",
+              "RelativeDocumentMoniker": "admin.cs",
+              "ToolTip": "C:\\Users\\Gigabyte\\source\\Library-System\\admin.cs",
+              "RelativeToolTip": "admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T01:11:32.548Z"
             }
           ]
         }

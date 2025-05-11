@@ -127,8 +127,8 @@
   <data name="Library icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Library icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Book icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Book icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user2 icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user2 icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,20 +139,26 @@
   <data name="Caret down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Caret down.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Setting icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Setting icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Check_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Check_in.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user help icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user help icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Setting icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Setting icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user2 icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user2 icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dashboard icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashboard icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Search icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Setting icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Setting icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Book icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Book icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,22 +172,25 @@
   <data name="book2 icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book2 icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dashboard icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dashboard icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Log_Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Log_Out.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Search icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user help icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user help icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Setting icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Setting icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dashboard icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboard icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user help icon black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user help icon black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user help icon white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user help icon white.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Checck_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Checck_out.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

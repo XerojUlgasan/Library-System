@@ -30,6 +30,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -52,7 +53,7 @@
             DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            label1 = new Label();
+            branch = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -76,9 +77,6 @@
             panel7 = new Panel();
             label7 = new Label();
             pictureBox8 = new PictureBox();
-            panel8 = new Panel();
-            label8 = new Label();
-            pictureBox9 = new PictureBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
             panel9 = new Panel();
             borrow_label = new Label();
@@ -96,12 +94,14 @@
             total_label = new Label();
             label23 = new Label();
             panel14 = new Panel();
+            unique_books_label = new Label();
+            label30 = new Label();
+            panel15 = new Panel();
             visitor_label = new Label();
             label24 = new Label();
-            panel15 = new Panel();
+            panel16 = new Panel();
             member_label = new Label();
             label25 = new Label();
-            panel16 = new Panel();
             panel17 = new Panel();
             panel19 = new Panel();
             overview_history_dgv = new DataGridView();
@@ -116,17 +116,13 @@
             chart_panel = new Panel();
             label9 = new Label();
             panel20 = new Panel();
-            panel22 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
             panel21 = new Panel();
-            recent_checkout_dgv = new DataGridView();
-            Column11 = new DataGridViewTextBoxColumn();
+            visit_logs_dgv = new DataGridView();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            Column17 = new DataGridViewTextBoxColumn();
+            Column18 = new DataGridViewTextBoxColumn();
+            Column11 = new DataGridViewTextBoxColumn();
             Column12 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
             label11 = new Label();
             dashboard_panel = new Panel();
             label26 = new Label();
@@ -174,14 +170,25 @@
             Column13 = new DataGridViewTextBoxColumn();
             borrow_record_panel = new Panel();
             addborrow_panel = new Panel();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            panel23 = new Panel();
+            pictureBox9 = new PictureBox();
+            addborrow_user_type_txt = new TextBox();
+            student_id_pnl = new Panel();
+            addborrow_studId_txtbox = new TextBox();
+            label32 = new Label();
+            panel24 = new Panel();
+            addborrow_email_txt = new TextBox();
+            label1 = new Label();
+            panel8 = new Panel();
+            label33 = new Label();
+            addborrow_title_txtbox = new TextBox();
+            panel18 = new Panel();
+            addborrow_returnDate_dtp = new DateTimePicker();
+            label34 = new Label();
+            panel2 = new Panel();
             button4 = new Button();
             button3 = new Button();
-            addborrow_returnDate_dtp = new DateTimePicker();
-            addborrow_title_txtbox = new TextBox();
-            addborrow_studId_txtbox = new TextBox();
-            label34 = new Label();
-            label33 = new Label();
-            label32 = new Label();
             pictureBox13 = new PictureBox();
             label31 = new Label();
             label27 = new Label();
@@ -190,7 +197,7 @@
             status_cms = new ContextMenuStrip(components);
             borrowedToolStripMenuItem = new ToolStripMenuItem();
             returnedToolStripMenuItem = new ToolStripMenuItem();
-            reserveToolStripMenuItem = new ToolStripMenuItem();
+            overdueToolStripMenuItem = new ToolStripMenuItem();
             borrow_record_search_txtbox = new TextBox();
             status_btn = new Button();
             dateTimePicker3 = new DateTimePicker();
@@ -213,6 +220,10 @@
             overduesBooksToolStripMenuItem = new ToolStripMenuItem();
             missingBooksToolStripMenuItem = new ToolStripMenuItem();
             totalBooksToolStripMenuItem = new ToolStripMenuItem();
+            user_type_cms = new ContextMenuStrip(components);
+            studentToolStripMenuItem = new ToolStripMenuItem();
+            staffToolStripMenuItem = new ToolStripMenuItem();
+            professorToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -229,8 +240,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             flowLayoutPanel2.SuspendLayout();
             panel9.SuspendLayout();
             panel10.SuspendLayout();
@@ -239,15 +248,15 @@
             panel13.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
+            panel16.SuspendLayout();
             panel17.SuspendLayout();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)overview_history_dgv).BeginInit();
             statistics_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             panel20.SuspendLayout();
-            panel22.SuspendLayout();
             panel21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)recent_checkout_dgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)visit_logs_dgv).BeginInit();
             dashboard_panel.SuspendLayout();
             user_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -262,17 +271,26 @@
             ((System.ComponentModel.ISupportInitialize)books_dgv).BeginInit();
             borrow_record_panel.SuspendLayout();
             addborrow_panel.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            panel23.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            student_id_pnl.SuspendLayout();
+            panel24.SuspendLayout();
+            panel8.SuspendLayout();
+            panel18.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             status_cms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)borrow_dgv).BeginInit();
             statistics_cms.SuspendLayout();
+            user_type_cms.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(branch);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
@@ -284,15 +302,15 @@
             panel1.Size = new Size(1168, 53);
             panel1.TabIndex = 0;
             // 
-            // label1
+            // branch
             // 
-            label1.AutoEllipsis = true;
-            label1.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1032, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(123, 23);
-            label1.TabIndex = 7;
-            label1.Text = "Username";
+            branch.AutoEllipsis = true;
+            branch.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            branch.Location = new Point(1032, 15);
+            branch.Name = "branch";
+            branch.Size = new Size(123, 23);
+            branch.TabIndex = 7;
+            branch.Text = "branch";
             // 
             // pictureBox3
             // 
@@ -370,7 +388,6 @@
             flowLayoutPanel1.Controls.Add(panel5);
             flowLayoutPanel1.Controls.Add(panel6);
             flowLayoutPanel1.Controls.Add(panel7);
-            flowLayoutPanel1.Controls.Add(panel8);
             flowLayoutPanel1.Location = new Point(3, 3);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(5);
@@ -518,6 +535,7 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(184, 49);
             panel7.TabIndex = 4;
+            panel7.Click += log_out;
             // 
             // label7
             // 
@@ -525,49 +543,21 @@
             label7.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(50, 13);
             label7.Name = "label7";
-            label7.Size = new Size(66, 22);
+            label7.Size = new Size(65, 22);
             label7.TabIndex = 9;
-            label7.Text = "Settings";
+            label7.Text = "Log Out";
+            label7.Click += log_out;
             // 
             // pictureBox8
             // 
-            pictureBox8.Image = Properties.Resources.Setting_icon_black;
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
             pictureBox8.Location = new Point(8, 8);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(32, 32);
             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox8.TabIndex = 8;
             pictureBox8.TabStop = false;
-            // 
-            // panel8
-            // 
-            panel8.Controls.Add(label8);
-            panel8.Controls.Add(pictureBox9);
-            panel8.Location = new Point(5, 275);
-            panel8.Margin = new Padding(0, 0, 0, 5);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(184, 49);
-            panel8.TabIndex = 5;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(50, 13);
-            label8.Name = "label8";
-            label8.Size = new Size(42, 22);
-            label8.TabIndex = 9;
-            label8.Text = "Help";
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = Properties.Resources.user_help_icon_black;
-            pictureBox9.Location = new Point(8, 8);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(32, 32);
-            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox9.TabIndex = 8;
-            pictureBox9.TabStop = false;
+            pictureBox8.Click += log_out;
             // 
             // flowLayoutPanel2
             // 
@@ -737,12 +727,42 @@
             // panel14
             // 
             panel14.BackColor = Color.White;
-            panel14.Controls.Add(visitor_label);
-            panel14.Controls.Add(label24);
+            panel14.Controls.Add(unique_books_label);
+            panel14.Controls.Add(label30);
             panel14.Location = new Point(241, 99);
             panel14.Name = "panel14";
             panel14.Size = new Size(232, 90);
             panel14.TabIndex = 5;
+            // 
+            // unique_books_label
+            // 
+            unique_books_label.AutoSize = true;
+            unique_books_label.Font = new Font("Trebuchet MS", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            unique_books_label.Location = new Point(103, 39);
+            unique_books_label.Name = "unique_books_label";
+            unique_books_label.Size = new Size(26, 29);
+            unique_books_label.TabIndex = 5;
+            unique_books_label.Text = "0";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label30.Location = new Point(8, 6);
+            label30.Name = "label30";
+            label30.Size = new Size(105, 22);
+            label30.TabIndex = 5;
+            label30.Text = "Unique Books";
+            // 
+            // panel15
+            // 
+            panel15.BackColor = Color.White;
+            panel15.Controls.Add(visitor_label);
+            panel15.Controls.Add(label24);
+            panel15.Location = new Point(479, 99);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(232, 90);
+            panel15.TabIndex = 6;
             // 
             // visitor_label
             // 
@@ -758,27 +778,27 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label24.Location = new Point(3, 3);
+            label24.Location = new Point(3, 6);
             label24.Name = "label24";
             label24.Size = new Size(62, 22);
             label24.TabIndex = 2;
             label24.Text = "Visitors";
             // 
-            // panel15
+            // panel16
             // 
-            panel15.BackColor = Color.White;
-            panel15.Controls.Add(member_label);
-            panel15.Controls.Add(label25);
-            panel15.Location = new Point(479, 99);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(232, 90);
-            panel15.TabIndex = 6;
+            panel16.BackColor = Color.White;
+            panel16.Controls.Add(member_label);
+            panel16.Controls.Add(label25);
+            panel16.Location = new Point(717, 99);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(232, 90);
+            panel16.TabIndex = 7;
             // 
             // member_label
             // 
             member_label.AutoSize = true;
             member_label.Font = new Font("Trebuchet MS", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            member_label.Location = new Point(103, 39);
+            member_label.Location = new Point(101, 42);
             member_label.Name = "member_label";
             member_label.Size = new Size(26, 29);
             member_label.TabIndex = 4;
@@ -788,19 +808,11 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(3, 3);
+            label25.Location = new Point(4, 6);
             label25.Name = "label25";
             label25.Size = new Size(110, 22);
             label25.TabIndex = 2;
             label25.Text = "New Members";
-            // 
-            // panel16
-            // 
-            panel16.BackColor = Color.White;
-            panel16.Location = new Point(717, 99);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(232, 90);
-            panel16.TabIndex = 7;
             // 
             // panel17
             // 
@@ -937,6 +949,7 @@
             // 
             // statistics_txtbox
             // 
+            statistics_txtbox.BackColor = SystemColors.ControlLightLight;
             statistics_txtbox.Location = new Point(289, 5);
             statistics_txtbox.Name = "statistics_txtbox";
             statistics_txtbox.ReadOnly = true;
@@ -965,65 +978,32 @@
             // 
             // panel20
             // 
-            panel20.Controls.Add(panel22);
             panel20.Controls.Add(panel21);
             panel20.Location = new Point(4, 455);
             panel20.Name = "panel20";
             panel20.Size = new Size(952, 272);
             panel20.TabIndex = 4;
             // 
-            // panel22
-            // 
-            panel22.BackColor = Color.White;
-            panel22.Controls.Add(button2);
-            panel22.Controls.Add(button1);
-            panel22.Location = new Point(717, 3);
-            panel22.Name = "panel22";
-            panel22.Size = new Size(232, 266);
-            panel22.TabIndex = 1;
-            // 
-            // button2
-            // 
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Trebuchet MS", 9.75F);
-            button2.Location = new Point(119, 8);
-            button2.Name = "button2";
-            button2.Size = new Size(91, 30);
-            button2.TabIndex = 1;
-            button2.Text = "New Arrivals";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Trebuchet MS", 9.75F);
-            button1.Location = new Point(22, 8);
-            button1.Name = "button1";
-            button1.Size = new Size(91, 30);
-            button1.TabIndex = 0;
-            button1.Text = "Top Books";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // panel21
             // 
             panel21.BackColor = Color.White;
-            panel21.Controls.Add(recent_checkout_dgv);
+            panel21.Controls.Add(visit_logs_dgv);
             panel21.Controls.Add(label11);
             panel21.Location = new Point(3, 3);
             panel21.Name = "panel21";
-            panel21.Size = new Size(708, 266);
+            panel21.Size = new Size(945, 266);
             panel21.TabIndex = 0;
             // 
-            // recent_checkout_dgv
+            // visit_logs_dgv
             // 
-            recent_checkout_dgv.AllowUserToAddRows = false;
-            recent_checkout_dgv.AllowUserToDeleteRows = false;
+            visit_logs_dgv.AllowUserToAddRows = false;
+            visit_logs_dgv.AllowUserToDeleteRows = false;
             dataGridViewCellStyle6.BackColor = Color.FromArgb(224, 224, 224);
-            recent_checkout_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            recent_checkout_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            recent_checkout_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            recent_checkout_dgv.BackgroundColor = Color.FromArgb(249, 249, 249);
-            recent_checkout_dgv.BorderStyle = BorderStyle.None;
+            visit_logs_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            visit_logs_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            visit_logs_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            visit_logs_dgv.BackgroundColor = Color.FromArgb(249, 249, 249);
+            visit_logs_dgv.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = SystemColors.Control;
             dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
@@ -1031,9 +1011,9 @@
             dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            recent_checkout_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            recent_checkout_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            recent_checkout_dgv.Columns.AddRange(new DataGridViewColumn[] { Column11, dataGridViewTextBoxColumn6, Column12, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9 });
+            visit_logs_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            visit_logs_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            visit_logs_dgv.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, Column17, Column18, Column11, Column12 });
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = SystemColors.Window;
             dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
@@ -1041,32 +1021,26 @@
             dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            recent_checkout_dgv.DefaultCellStyle = dataGridViewCellStyle8;
-            recent_checkout_dgv.GridColor = Color.White;
-            recent_checkout_dgv.Location = new Point(5, 31);
-            recent_checkout_dgv.MultiSelect = false;
-            recent_checkout_dgv.Name = "recent_checkout_dgv";
-            recent_checkout_dgv.ReadOnly = true;
-            recent_checkout_dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            recent_checkout_dgv.RowHeadersVisible = false;
-            recent_checkout_dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            visit_logs_dgv.DefaultCellStyle = dataGridViewCellStyle8;
+            visit_logs_dgv.GridColor = Color.White;
+            visit_logs_dgv.Location = new Point(5, 31);
+            visit_logs_dgv.MultiSelect = false;
+            visit_logs_dgv.Name = "visit_logs_dgv";
+            visit_logs_dgv.ReadOnly = true;
+            visit_logs_dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            visit_logs_dgv.RowHeadersVisible = false;
+            visit_logs_dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.Font = new Font("Trebuchet MS", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle9.Padding = new Padding(10);
-            recent_checkout_dgv.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            recent_checkout_dgv.ScrollBars = ScrollBars.Vertical;
-            recent_checkout_dgv.ShowCellErrors = false;
-            recent_checkout_dgv.ShowCellToolTips = false;
-            recent_checkout_dgv.ShowEditingIcon = false;
-            recent_checkout_dgv.ShowRowErrors = false;
-            recent_checkout_dgv.Size = new Size(698, 230);
-            recent_checkout_dgv.TabIndex = 4;
-            // 
-            // Column11
-            // 
-            Column11.HeaderText = "Borrow ID";
-            Column11.Name = "Column11";
-            Column11.ReadOnly = true;
+            visit_logs_dgv.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            visit_logs_dgv.ScrollBars = ScrollBars.Vertical;
+            visit_logs_dgv.ShowCellErrors = false;
+            visit_logs_dgv.ShowCellToolTips = false;
+            visit_logs_dgv.ShowEditingIcon = false;
+            visit_logs_dgv.ShowRowErrors = false;
+            visit_logs_dgv.Size = new Size(935, 230);
+            visit_logs_dgv.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -1075,29 +1049,29 @@
             dataGridViewTextBoxColumn6.ReadOnly = true;
             dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.True;
             // 
+            // Column17
+            // 
+            Column17.HeaderText = "First Name";
+            Column17.Name = "Column17";
+            Column17.ReadOnly = true;
+            // 
+            // Column18
+            // 
+            Column18.HeaderText = "Last Name";
+            Column18.Name = "Column18";
+            Column18.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            Column11.HeaderText = "Type";
+            Column11.Name = "Column11";
+            Column11.ReadOnly = true;
+            // 
             // Column12
             // 
-            Column12.HeaderText = "Student Name";
+            Column12.HeaderText = "Time";
             Column12.Name = "Column12";
             Column12.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.HeaderText = "Book Title";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.HeaderText = "Due Date";
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.HeaderText = "Date Borrowed";
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // label11
             // 
@@ -1105,9 +1079,9 @@
             label11.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.Location = new Point(6, 6);
             label11.Name = "label11";
-            label11.Size = new Size(136, 22);
+            label11.Size = new Size(77, 22);
             label11.TabIndex = 2;
-            label11.Text = "Recent Checkouts";
+            label11.Text = "Visit Logs";
             // 
             // dashboard_panel
             // 
@@ -1211,7 +1185,7 @@
             // 
             // Column1
             // 
-            Column1.HeaderText = "Student ID";
+            Column1.HeaderText = "User Type";
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             Column1.Resizable = DataGridViewTriState.True;
@@ -1633,25 +1607,179 @@
             // 
             // addborrow_panel
             // 
-            addborrow_panel.Controls.Add(button4);
-            addborrow_panel.Controls.Add(button3);
-            addborrow_panel.Controls.Add(addborrow_returnDate_dtp);
-            addborrow_panel.Controls.Add(addborrow_title_txtbox);
-            addborrow_panel.Controls.Add(addborrow_studId_txtbox);
-            addborrow_panel.Controls.Add(label34);
-            addborrow_panel.Controls.Add(label33);
-            addborrow_panel.Controls.Add(label32);
-            addborrow_panel.Location = new Point(319, 110);
+            addborrow_panel.Controls.Add(flowLayoutPanel3);
+            addborrow_panel.Location = new Point(361, 102);
             addborrow_panel.Name = "addborrow_panel";
-            addborrow_panel.Size = new Size(322, 338);
+            addborrow_panel.Size = new Size(239, 395);
             addborrow_panel.TabIndex = 16;
             addborrow_panel.Visible = false;
+            // 
+            // flowLayoutPanel3
+            // 
+            flowLayoutPanel3.Controls.Add(panel23);
+            flowLayoutPanel3.Controls.Add(student_id_pnl);
+            flowLayoutPanel3.Controls.Add(panel24);
+            flowLayoutPanel3.Controls.Add(panel8);
+            flowLayoutPanel3.Controls.Add(panel18);
+            flowLayoutPanel3.Controls.Add(panel2);
+            flowLayoutPanel3.Location = new Point(9, 12);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(222, 375);
+            flowLayoutPanel3.TabIndex = 7;
+            // 
+            // panel23
+            // 
+            panel23.Controls.Add(pictureBox9);
+            panel23.Controls.Add(addborrow_user_type_txt);
+            panel23.Location = new Point(3, 3);
+            panel23.Name = "panel23";
+            panel23.Size = new Size(216, 37);
+            panel23.TabIndex = 8;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = Properties.Resources.Caret_down;
+            pictureBox9.Location = new Point(186, 9);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(19, 19);
+            pictureBox9.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox9.TabIndex = 24;
+            pictureBox9.TabStop = false;
+            pictureBox9.Click += user_type;
+            // 
+            // addborrow_user_type_txt
+            // 
+            addborrow_user_type_txt.BackColor = SystemColors.ControlLightLight;
+            addborrow_user_type_txt.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addborrow_user_type_txt.Location = new Point(8, 6);
+            addborrow_user_type_txt.Name = "addborrow_user_type_txt";
+            addborrow_user_type_txt.ReadOnly = true;
+            addborrow_user_type_txt.Size = new Size(200, 25);
+            addborrow_user_type_txt.TabIndex = 2;
+            addborrow_user_type_txt.Click += user_type;
+            // 
+            // student_id_pnl
+            // 
+            student_id_pnl.Controls.Add(addborrow_studId_txtbox);
+            student_id_pnl.Controls.Add(label32);
+            student_id_pnl.Location = new Point(3, 46);
+            student_id_pnl.Name = "student_id_pnl";
+            student_id_pnl.Size = new Size(216, 61);
+            student_id_pnl.TabIndex = 8;
+            student_id_pnl.Visible = false;
+            // 
+            // addborrow_studId_txtbox
+            // 
+            addborrow_studId_txtbox.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addborrow_studId_txtbox.Location = new Point(8, 29);
+            addborrow_studId_txtbox.Name = "addborrow_studId_txtbox";
+            addborrow_studId_txtbox.Size = new Size(200, 25);
+            addborrow_studId_txtbox.TabIndex = 1;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Trebuchet MS", 11.25F);
+            label32.Location = new Point(4, 6);
+            label32.Name = "label32";
+            label32.Size = new Size(78, 20);
+            label32.TabIndex = 0;
+            label32.Text = "Student ID";
+            // 
+            // panel24
+            // 
+            panel24.Controls.Add(addborrow_email_txt);
+            panel24.Controls.Add(label1);
+            panel24.Location = new Point(3, 113);
+            panel24.Name = "panel24";
+            panel24.Size = new Size(216, 61);
+            panel24.TabIndex = 9;
+            // 
+            // addborrow_email_txt
+            // 
+            addborrow_email_txt.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addborrow_email_txt.Location = new Point(8, 29);
+            addborrow_email_txt.Name = "addborrow_email_txt";
+            addborrow_email_txt.Size = new Size(200, 25);
+            addborrow_email_txt.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Trebuchet MS", 11.25F);
+            label1.Location = new Point(4, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Email";
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(label33);
+            panel8.Controls.Add(addborrow_title_txtbox);
+            panel8.Location = new Point(3, 180);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(216, 62);
+            panel8.TabIndex = 8;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Font = new Font("Trebuchet MS", 11.25F);
+            label33.Location = new Point(3, 6);
+            label33.Name = "label33";
+            label33.Size = new Size(75, 20);
+            label33.TabIndex = 1;
+            label33.Text = "Book Title";
+            // 
+            // addborrow_title_txtbox
+            // 
+            addborrow_title_txtbox.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addborrow_title_txtbox.Location = new Point(8, 29);
+            addborrow_title_txtbox.Name = "addborrow_title_txtbox";
+            addborrow_title_txtbox.Size = new Size(200, 25);
+            addborrow_title_txtbox.TabIndex = 2;
+            // 
+            // panel18
+            // 
+            panel18.Controls.Add(addborrow_returnDate_dtp);
+            panel18.Controls.Add(label34);
+            panel18.Location = new Point(3, 248);
+            panel18.Name = "panel18";
+            panel18.Size = new Size(216, 64);
+            panel18.TabIndex = 8;
+            // 
+            // addborrow_returnDate_dtp
+            // 
+            addborrow_returnDate_dtp.Location = new Point(8, 31);
+            addborrow_returnDate_dtp.Name = "addborrow_returnDate_dtp";
+            addborrow_returnDate_dtp.Size = new Size(200, 23);
+            addborrow_returnDate_dtp.TabIndex = 3;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Trebuchet MS", 11.25F);
+            label34.Location = new Point(5, 8);
+            label34.Name = "label34";
+            label34.Size = new Size(89, 20);
+            label34.TabIndex = 2;
+            label34.Text = "Return Date";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(button4);
+            panel2.Controls.Add(button3);
+            panel2.Location = new Point(3, 318);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(216, 46);
+            panel2.TabIndex = 6;
             // 
             // button4
             // 
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Trebuchet MS", 9.75F);
-            button4.Location = new Point(174, 254);
+            button4.Location = new Point(111, 6);
             button4.Name = "button4";
             button4.Size = new Size(100, 33);
             button4.TabIndex = 4;
@@ -1663,66 +1791,13 @@
             // 
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Trebuchet MS", 9.75F);
-            button3.Location = new Point(48, 254);
+            button3.Location = new Point(5, 6);
             button3.Name = "button3";
             button3.Size = new Size(100, 33);
             button3.TabIndex = 5;
             button3.Text = "Cancel";
             button3.UseVisualStyleBackColor = true;
             button3.Click += addborrow_popup_exit;
-            // 
-            // addborrow_returnDate_dtp
-            // 
-            addborrow_returnDate_dtp.Location = new Point(60, 200);
-            addborrow_returnDate_dtp.Name = "addborrow_returnDate_dtp";
-            addborrow_returnDate_dtp.Size = new Size(200, 23);
-            addborrow_returnDate_dtp.TabIndex = 3;
-            // 
-            // addborrow_title_txtbox
-            // 
-            addborrow_title_txtbox.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            addborrow_title_txtbox.Location = new Point(60, 138);
-            addborrow_title_txtbox.Name = "addborrow_title_txtbox";
-            addborrow_title_txtbox.Size = new Size(200, 25);
-            addborrow_title_txtbox.TabIndex = 2;
-            // 
-            // addborrow_studId_txtbox
-            // 
-            addborrow_studId_txtbox.Font = new Font("Trebuchet MS", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            addborrow_studId_txtbox.Location = new Point(60, 76);
-            addborrow_studId_txtbox.Name = "addborrow_studId_txtbox";
-            addborrow_studId_txtbox.Size = new Size(200, 25);
-            addborrow_studId_txtbox.TabIndex = 1;
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Font = new Font("Trebuchet MS", 11.25F);
-            label34.Location = new Point(60, 177);
-            label34.Name = "label34";
-            label34.Size = new Size(89, 20);
-            label34.TabIndex = 2;
-            label34.Text = "Return Date";
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Font = new Font("Trebuchet MS", 11.25F);
-            label33.Location = new Point(60, 115);
-            label33.Name = "label33";
-            label33.Size = new Size(75, 20);
-            label33.TabIndex = 1;
-            label33.Text = "Book Title";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Trebuchet MS", 11.25F);
-            label32.Location = new Point(60, 51);
-            label32.Name = "label32";
-            label32.Size = new Size(78, 20);
-            label32.TabIndex = 0;
-            label32.Text = "Student ID";
             // 
             // pictureBox13
             // 
@@ -1780,7 +1855,7 @@
             // 
             // status_cms
             // 
-            status_cms.Items.AddRange(new ToolStripItem[] { borrowedToolStripMenuItem, returnedToolStripMenuItem, reserveToolStripMenuItem });
+            status_cms.Items.AddRange(new ToolStripItem[] { borrowedToolStripMenuItem, returnedToolStripMenuItem, overdueToolStripMenuItem });
             status_cms.Name = "contextMenuStrip1";
             status_cms.Size = new Size(126, 70);
             status_cms.ItemClicked += status_filter;
@@ -1797,11 +1872,11 @@
             returnedToolStripMenuItem.Size = new Size(125, 22);
             returnedToolStripMenuItem.Text = "Returned";
             // 
-            // reserveToolStripMenuItem
+            // overdueToolStripMenuItem
             // 
-            reserveToolStripMenuItem.Name = "reserveToolStripMenuItem";
-            reserveToolStripMenuItem.Size = new Size(125, 22);
-            reserveToolStripMenuItem.Text = "Reserve";
+            overdueToolStripMenuItem.Name = "overdueToolStripMenuItem";
+            overdueToolStripMenuItem.Size = new Size(125, 22);
+            overdueToolStripMenuItem.Text = "Overdue";
             // 
             // borrow_record_search_txtbox
             // 
@@ -1899,13 +1974,13 @@
             // 
             // Column15
             // 
-            Column15.HeaderText = "Borrower ID";
+            Column15.HeaderText = "Borrower Type";
             Column15.Name = "Column15";
             Column15.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "Borrower Name";
+            dataGridViewTextBoxColumn2.HeaderText = "Email";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
@@ -1993,16 +2068,41 @@
             totalBooksToolStripMenuItem.Size = new Size(160, 22);
             totalBooksToolStripMenuItem.Text = "Total Books";
             // 
+            // user_type_cms
+            // 
+            user_type_cms.Items.AddRange(new ToolStripItem[] { studentToolStripMenuItem, staffToolStripMenuItem, professorToolStripMenuItem });
+            user_type_cms.Name = "user_type_cms";
+            user_type_cms.Size = new Size(124, 70);
+            user_type_cms.ItemClicked += user_type_click;
+            // 
+            // studentToolStripMenuItem
+            // 
+            studentToolStripMenuItem.Name = "studentToolStripMenuItem";
+            studentToolStripMenuItem.Size = new Size(123, 22);
+            studentToolStripMenuItem.Text = "Student";
+            // 
+            // staffToolStripMenuItem
+            // 
+            staffToolStripMenuItem.Name = "staffToolStripMenuItem";
+            staffToolStripMenuItem.Size = new Size(123, 22);
+            staffToolStripMenuItem.Text = "Staff";
+            // 
+            // professorToolStripMenuItem
+            // 
+            professorToolStripMenuItem.Name = "professorToolStripMenuItem";
+            professorToolStripMenuItem.Size = new Size(123, 22);
+            professorToolStripMenuItem.Text = "Professor";
+            // 
             // Form1
             // 
             BackColor = Color.FromArgb(249, 249, 249);
             ClientSize = new Size(1168, 784);
             Controls.Add(tabs_panel);
             Controls.Add(panel1);
-            Controls.Add(dashboard_panel);
-            Controls.Add(borrow_record_panel);
             Controls.Add(book_panel);
             Controls.Add(user_panel);
+            Controls.Add(dashboard_panel);
+            Controls.Add(borrow_record_panel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -2029,9 +2129,6 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             flowLayoutPanel2.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
@@ -2047,6 +2144,8 @@
             panel14.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
             panel17.ResumeLayout(false);
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
@@ -2055,10 +2154,9 @@
             statistics_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             panel20.ResumeLayout(false);
-            panel22.ResumeLayout(false);
             panel21.ResumeLayout(false);
             panel21.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)recent_checkout_dgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)visit_logs_dgv).EndInit();
             dashboard_panel.ResumeLayout(false);
             dashboard_panel.PerformLayout();
             user_panel.ResumeLayout(false);
@@ -2078,18 +2176,31 @@
             borrow_record_panel.ResumeLayout(false);
             borrow_record_panel.PerformLayout();
             addborrow_panel.ResumeLayout(false);
-            addborrow_panel.PerformLayout();
+            flowLayoutPanel3.ResumeLayout(false);
+            panel23.ResumeLayout(false);
+            panel23.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            student_id_pnl.ResumeLayout(false);
+            student_id_pnl.PerformLayout();
+            panel24.ResumeLayout(false);
+            panel24.PerformLayout();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            panel18.ResumeLayout(false);
+            panel18.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             status_cms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)borrow_dgv).EndInit();
             statistics_cms.ResumeLayout(false);
+            user_type_cms.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
+        private Label branch;
         private Panel panel1;
         private Panel tabs_panel;
         private FlowLayoutPanel flowLayoutPanel1;
@@ -2132,9 +2243,6 @@
         private Label label9;
         private Label label10;
         private Panel panel20;
-        private Panel panel22;
-        private Button button2;
-        private Button button1;
         private Panel panel21;
         private Label label11;
         private Panel dashboard_panel;
@@ -2163,7 +2271,6 @@
         private ContextMenuStrip status_cms;
         private ToolStripMenuItem borrowedToolStripMenuItem;
         private ToolStripMenuItem returnedToolStripMenuItem;
-        private ToolStripMenuItem reserveToolStripMenuItem;
         private TextBox borrow_record_search_txtbox;
         private Button button5;
         private Label label19;
@@ -2178,13 +2285,7 @@
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column9;
         private DataGridViewTextBoxColumn Column10;
-        private DataGridView recent_checkout_dgv;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridView visit_logs_dgv;
         private PictureBox pictureBox11;
         private PictureBox pictureBox10;
         private Label label26;
@@ -2207,13 +2308,6 @@
         private ContextMenuStrip language_cms;
         private PictureBox pictureBox13;
         private Label label31;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn Column15;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column7;
         private Panel addborrow_panel;
         private Label label34;
         private Label label33;
@@ -2251,5 +2345,33 @@
         private Label total_label;
         private Label visitor_label;
         private Label member_label;
+        private Label unique_books_label;
+        private Label label30;
+        private ToolStripMenuItem overdueToolStripMenuItem;
+        private Panel panel18;
+        private FlowLayoutPanel flowLayoutPanel3;
+        private Panel panel2;
+        private Panel panel23;
+        private TextBox addborrow_user_type_txt;
+        private Panel student_id_pnl;
+        private ContextMenuStrip user_type_cms;
+        private ToolStripMenuItem studentToolStripMenuItem;
+        private ToolStripMenuItem staffToolStripMenuItem;
+        private ToolStripMenuItem professorToolStripMenuItem;
+        private Panel panel24;
+        private TextBox addborrow_email_txt;
+        private Label label1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn Column15;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn Column17;
+        private DataGridViewTextBoxColumn Column18;
+        private DataGridViewTextBoxColumn Column11;
+        private DataGridViewTextBoxColumn Column12;
     }
 }

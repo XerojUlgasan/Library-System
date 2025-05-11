@@ -79,3 +79,5 @@ C:\Users\Gigabyte\source\Library-System\bin\Debug\net8.0-windows\runtimes\win-x8
 C:\Users\Gigabyte\source\Library-System\bin\Debug\net8.0-windows\LiveChartsCore.dll
 C:\Users\Gigabyte\source\Library-System\bin\Debug\net8.0-windows\LiveChartsCore.SkiaSharpView.dll
 C:\Users\Gigabyte\source\Library-System\bin\Debug\net8.0-windows\LiveChartsCore.SkiaSharpView.WinForms.dll
+C:\Users\Gigabyte\source\Library-System\obj\Debug\net8.0-windows\Library_system.WelcomePage.resources
+C:\Users\Gigabyte\source\Library-System\obj\Debug\net8.0-windows\Library_system.UserInterface.resources
